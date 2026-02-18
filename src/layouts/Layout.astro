@@ -1,0 +1,120 @@
+---
+interface Props { title: string }
+const { title } = Astro.props
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ShareShed - Share and donate items in your neighborhood. Reduce waste, build community.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <title>{title}</title>
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="nav-container">
+      <a href="/" class="logo">🏡 ShareShed</a>
+      <div class="nav-links">
+        <a href="#browse">Browse</a>
+        <a href="#karma">Karma</a>
+        <a href="#how">How It Works</a>
+        <a href="#post" class="nav-btn">Share an Item</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+  <slot />
+  <footer>
+    <div class="footer-inner">
+      <p>ShareShed &mdash; Your neighborhood sharing network</p>
+      <p class="footer-sub">No money. No waste. Just neighbors helping neighbors.</p>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #ffffff;
+    --surface-alt: #F3F1EC;
+    --text: #1a1a1a;
+    --text-mid: #555;
+    --text-light: #888;
+    --green: #2D6A4F;
+    --green-light: #40916C;
+    --green-bg: #D8F3DC;
+    --green-soft: #B7E4C7;
+    --amber: #E09F3E;
+    --amber-bg: #FFF3D6;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .top-nav {
+    background: var(--surface);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding: 0.8rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: var(--green);
+  }
+  .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+  .nav-btn {
+    background: var(--green) !important;
+    color: #fff !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600 !important;
+  }
+  .nav-btn:hover { background: var(--green-light) !important; }
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  footer {
+    background: var(--green);
+    color: rgba(255,255,255,0.9);
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+  }
+  .footer-inner p { font-weight: 500; }
+  .footer-sub { font-size: 0.85rem; opacity: 0.7; margin-top: 0.3rem; }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .mobile-toggle { display: block; }
+  }
+</style>
